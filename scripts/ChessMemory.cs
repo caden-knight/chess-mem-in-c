@@ -81,6 +81,37 @@ public partial class ChessMemory : Node2D
 	{
 		switch (currentCoordinate)
 		{
+			// Black Rook placement
+			case "A8":
+				pieceOnSquare.Animation = "b-R";
+				break;
+			case "H8":
+				pieceOnSquare.Animation = "b-R";
+				break;
+
+			// White Knight placement
+			case "B8":
+				pieceOnSquare.Animation = "b-N";
+				break;
+			case "G8":
+				pieceOnSquare.Animation = "b-N";
+				break;
+
+			case "C8":
+				pieceOnSquare.Animation = "b-B";
+				break;
+			case "F8":
+				pieceOnSquare.Animation = "b-B";
+				break;
+
+			// White King and Queen placement
+			case "D8":
+				pieceOnSquare.Animation = "b-Q";
+				break;
+			case "E8":
+				pieceOnSquare.Animation = "b-K";
+				break;
+
 			// White Rook placement
 			case "A1":
 				pieceOnSquare.Animation = "w-R";
@@ -114,6 +145,7 @@ public partial class ChessMemory : Node2D
 		}
 
 		pieceOnSquare.Animation = currentCoordinate[1] == '2' ? "w-P" : pieceOnSquare.Animation;
+		pieceOnSquare.Animation = currentCoordinate[1] == '7' ? "b-P" : pieceOnSquare.Animation;
 	}
 
 	private void PlacePawns(string currentCoordinate, AnimatedSprite2D squarePiece)

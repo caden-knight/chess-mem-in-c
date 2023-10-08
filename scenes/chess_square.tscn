@@ -1,7 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://d25h4i4metnq4"]
+[gd_scene load_steps=16 format=3 uid="uid://d25h4i4metnq4"]
 
 [ext_resource type="FontFile" uid="uid://juisd8offaas" path="res://assets/fonts/south park.ttf" id="1_1v6oe"]
 [ext_resource type="Texture2D" uid="uid://bk153a87213sh" path="res://assets/chessSpriteSheet.png" id="2_bq17x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6m3e"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(640, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl38j"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(0, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w654x"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(960, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfeot"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(1600, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cktko"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(320, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rywu"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(1280, 320, 320, 320)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vh7dm"]
 atlas = ExtResource("2_bq17x")
@@ -29,10 +53,58 @@ region = Rect2(1280, 0, 320, 320)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2vi0o"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6m3e")
+}],
+"loop": false,
+"name": &"b-B",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl38j")
+}],
+"loop": false,
+"name": &"b-K",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w654x")
+}],
+"loop": false,
+"name": &"b-N",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfeot")
+}],
+"loop": true,
+"name": &"b-P",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cktko")
+}],
+"loop": false,
+"name": &"b-Q",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rywu")
+}],
+"loop": false,
+"name": &"b-R",
+"speed": 0.0
+}, {
 "frames": [],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -40,7 +112,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"w-B",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -48,7 +120,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"w-K",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -56,7 +128,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"w-N",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -64,7 +136,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"w-P",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -72,7 +144,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"w-Q",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -80,7 +152,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"w-R",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [node name="ChessSquare" type="ColorRect"]
