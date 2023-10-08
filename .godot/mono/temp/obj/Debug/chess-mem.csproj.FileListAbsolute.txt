@@ -1,0 +1,17 @@
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/bin/Debug/chess-mem.deps.json
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/bin/Debug/chess-mem.runtimeconfig.json
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/bin/Debug/chess-mem.dll
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/bin/Debug/chess-mem.pdb
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.csproj.AssemblyReference.cache
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.AssemblyInfoInputs.cache
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.AssemblyInfo.cs
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.csproj.CoreCompileInputs.cache
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.csproj.CopyComplete
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.dll
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/refint/chess-mem.dll
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.pdb
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/chess-mem.genruntimeconfig.cache
+/Users/cadenmorrison/Documents/godot-projects/chess-mem/.godot/mono/temp/obj/Debug/ref/chess-mem.dll

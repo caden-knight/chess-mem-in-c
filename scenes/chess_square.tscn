@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://d25h4i4metnq4"]
+
+[ext_resource type="FontFile" uid="uid://juisd8offaas" path="res://assets/fonts/south park.ttf" id="1_1v6oe"]
+
+[node name="ChessSquare" type="ColorRect"]
+offset_right = 132.0
+offset_bottom = 132.0
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 120.0
+offset_bottom = 122.0
+
+[node name="Label" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_right = 119.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1v6oe")
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 21.0
+offset_right = 104.0
+offset_bottom = 104.0
+expand_mode = 1
+stretch_mode = 5

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4sf1tc5n3up7"]
+
+[ext_resource type="Script" path="res://scripts/ChessMemory.cs" id="1_wlgb1"]
+
+[node name="ChessMemory" type="Node2D" node_paths=PackedStringArray("chessBoard")]
+script = ExtResource("1_wlgb1")
+chessBoard = NodePath("ChessBoard")
+
+[node name="ChessBoard" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)

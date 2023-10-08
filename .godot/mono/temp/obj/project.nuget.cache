@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "ayaLTyg2dnZNg0e2vgSrQmo1IttU3JKz9R5muakDNz74QRvvPervpyGBLHwj9OeRa3lNu+N5xXrrQIZ6V+k84w==",
+  "success": true,
+  "projectFilePath": "/Users/cadenmorrison/Documents/godot-projects/chess-mem/chess-mem.csproj",
+  "expectedPackageFiles": [
+    "/Users/cadenmorrison/.nuget/packages/godot.sourcegenerators/4.1.2/godot.sourcegenerators.4.1.2.nupkg.sha512",
+    "/Users/cadenmorrison/.nuget/packages/godotsharp/4.1.2/godotsharp.4.1.2.nupkg.sha512",
+    "/Users/cadenmorrison/.nuget/packages/godotsharpeditor/4.1.2/godotsharpeditor.4.1.2.nupkg.sha512",
+    "/Users/cadenmorrison/.nuget/packages/microsoft.netcore.app.ref/6.0.21/microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "/Users/cadenmorrison/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.21/microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512"
+  ],
+  "logs": []
+}
