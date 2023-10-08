@@ -111,7 +111,13 @@ public partial class ChessMemory : Node2D
 			case "E1":
 				pieceOnSquare.Animation = "w-K";
 				break;
-
 		}
+
+		pieceOnSquare.Animation = currentCoordinate[1] == '2' ? "w-P" : pieceOnSquare.Animation;
+	}
+
+	private void PlacePawns(string currentCoordinate, AnimatedSprite2D squarePiece)
+	{
+
 	}
 }
