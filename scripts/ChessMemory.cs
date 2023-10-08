@@ -81,18 +81,37 @@ public partial class ChessMemory : Node2D
 	{
 		switch (currentCoordinate)
 		{
+			// White Rook placement
 			case "A1":
 				pieceOnSquare.Animation = "w-R";
 				break;
 			case "H1":
 				pieceOnSquare.Animation = "w-R";
 				break;
+
+			// White Knight placement
 			case "B1":
-				// pieceOnSquare.Texture = whiteRook;
+				pieceOnSquare.Animation = "w-N";
+				break;
+			case "G1":
+				pieceOnSquare.Animation = "w-N";
 				break;
 
-			case "G1":
+			case "C1":
+				pieceOnSquare.Animation = "w-B";
 				break;
+			case "F1":
+				pieceOnSquare.Animation = "w-B";
+				break;
+
+			// White King and Queen placement
+			case "D1":
+				pieceOnSquare.Animation = "w-Q";
+				break;
+			case "E1":
+				pieceOnSquare.Animation = "w-K";
+				break;
+
 		}
 	}
 }
