@@ -44,7 +44,7 @@ public partial class ChessMemory : Node2D
 				// square styling
 				square.Color = isWhiteSquare ? Colors.White : Colors.DarkGray;
 				Label coordLabel = square.GetChild(0).GetChild<Label>(0);
-				TextureRect squarePiece = square.GetChild(0).GetChild<TextureRect>(1);
+				AnimatedSprite2D squarePiece = square.GetChild(0).GetChild<AnimatedSprite2D>(1);
 				string currentCoord = $"{coordLetters[file - 1]}{9 - rank}";
 				coordLabel.Text = currentCoord;
 
@@ -77,20 +77,18 @@ public partial class ChessMemory : Node2D
 		chessBoard.Position = new Vector2(xDifference / 2, yDifference / 2);
 	}
 
-	private void PlacePieces(string currentCoordinate, TextureRect pieceOnSquare)
+	private void PlacePieces(string currentCoordinate, AnimatedSprite2D pieceOnSquare)
 	{
-		Texture2D whiteRook = ResourceLoader.Load<Texture2D>("res://assets/w-R.svg");
-
 		switch (currentCoordinate)
 		{
 			case "A1":
-				pieceOnSquare.Texture = whiteRook;
+				pieceOnSquare.Animation = "w-R";
 				break;
 			case "H1":
-				pieceOnSquare.Texture = whiteRook;
+				pieceOnSquare.Animation = "w-R";
 				break;
 			case "B1":
-				pieceOnSquare.Texture = whiteRook;
+				// pieceOnSquare.Texture = whiteRook;
 				break;
 
 			case "G1":

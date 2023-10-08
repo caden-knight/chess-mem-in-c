@@ -1,5 +1,3 @@
 res://scenes/chess_memory.tscn
-res://scenes/chess_memory.cs
 res://scenes/chess_square.tscn
-res://scenes/ChessMemory.cs
 res://scripts/ChessMemory.cs

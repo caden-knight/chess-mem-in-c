@@ -1,6 +1,87 @@
-[gd_scene load_steps=2 format=3 uid="uid://d25h4i4metnq4"]
+[gd_scene load_steps=10 format=3 uid="uid://d25h4i4metnq4"]
 
 [ext_resource type="FontFile" uid="uid://juisd8offaas" path="res://assets/fonts/south park.ttf" id="1_1v6oe"]
+[ext_resource type="Texture2D" uid="uid://bk153a87213sh" path="res://assets/chessSpriteSheet.png" id="2_bq17x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh7dm"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa5xu"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o75rc"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(960, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4ry6"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(1600, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5phn"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o0vk"]
+atlas = ExtResource("2_bq17x")
+region = Rect2(1280, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2vi0o"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh7dm")
+}],
+"loop": false,
+"name": &"w-B",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa5xu")
+}],
+"loop": false,
+"name": &"w-K",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o75rc")
+}],
+"loop": false,
+"name": &"w-N",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4ry6")
+}],
+"loop": false,
+"name": &"w-P",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5phn")
+}],
+"loop": false,
+"name": &"w-Q",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o0vk")
+}],
+"loop": false,
+"name": &"w-R",
+"speed": 5.0
+}]
 
 [node name="ChessSquare" type="ColorRect"]
 offset_right = 132.0
@@ -8,8 +89,7 @@ offset_bottom = 132.0
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 1.0
-offset_right = 120.0
+offset_right = 119.0
 offset_bottom = 122.0
 
 [node name="Label" type="Label" parent="Control"]
@@ -25,11 +105,8 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = 23.0
-offset_top = 21.0
-offset_right = 104.0
-offset_bottom = 104.0
-expand_mode = 1
-stretch_mode = 5
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(66, 66.25)
+scale = Vector2(0.4125, 0.410938)
+sprite_frames = SubResource("SpriteFrames_2vi0o")
+speed_scale = 0.0
