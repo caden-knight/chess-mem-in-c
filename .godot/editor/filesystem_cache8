@@ -1,14 +1,13 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1696807998
+::res://::1696823671
 icon.svg::CompressedTexture2D::637797115488110415::1696796805::1696796805::1::::<><>::
-::res://assets/::1696796992
-b-R.svg::CompressedTexture2D::4977182934382503389::1696796805::1696796805::1::::<><>::
+::res://assets/::1696808037
 chessSpriteSheet.png::CompressedTexture2D::3143854506160925339::1696796989::1696796992::1::::<><>::
-w-R.svg::CompressedTexture2D::5986460334910523265::1696796805::1696796805::1::::<><>::
 ::res://assets/fonts/::1696796805
 south park.ttf::FontFile::673505237247477130::1696796805::1696796805::1::::<><>::
-::res://scenes/::1696807864
-chess_memory.tscn::PackedScene::4459406966789296606::1696807864::0::1::::<><>::res://scripts/ChessMemory.cs
-chess_square.tscn::PackedScene::9116769434438040073::1696807864::0::1::::<><>::uid://juisd8offaas::::res://assets/fonts/south park.ttf<>uid://bk153a87213sh::::res://assets/chessSpriteSheet.png
-::res://scripts/::1696796805
-ChessMemory.cs::CSharpScript::-1::1696807723::0::1::::<><>::
+::res://scenes/::1696814814
+chess_memory.tscn::PackedScene::4459406966789296606::1696814813::0::1::::<><>::res://scripts/ChessMemory.cs
+chess_square.tscn::PackedScene::9116769434438040073::1696814814::0::1::::<><>::uid://juisd8offaas::::res://assets/fonts/south park.ttf<>res://scripts/CheckMovement.cs<>uid://bk153a87213sh::::res://assets/chessSpriteSheet.png
+::res://scripts/::1696808542
+CheckMovement.cs::CSharpScript::-1::1696814741::0::1::::<><>::
+ChessMemory.cs::CSharpScript::-1::1696808341::0::1::::<><>::

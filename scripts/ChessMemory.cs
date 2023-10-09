@@ -14,12 +14,9 @@ public partial class ChessMemory : Node2D
 	public override void _Ready()
 	{
 		SetupBoard();
-	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-
+		// gets the variable from the CheckMovement script
+		// ColorRect square = GetNode<ColorRect>("/root/ChessMemory/ChessBoard/ChessSquare");
 	}
 
 	private void SetupBoard()
@@ -54,13 +51,19 @@ public partial class ChessMemory : Node2D
 
 				float fileOffset = (file - 1) * squareWidth;
 				float rankOffset = (rank - 1) * squareLength;
+
 				square.Position = new Vector2(fileOffset, rankOffset);
 
-				// enures the next rank is colored correctly
+				// enures beginning and ending rank squares are colored correctly
 				isWhiteSquare = file != 8 ? !isWhiteSquare : isWhiteSquare;
 
-				PlacePieces(currentCoord, squarePiece);
+				PlacePieces(currentCoord, squarePiece, square);
 
+				// determines whether or not a square is occupied or empty
+				((CheckMovement)square).squareOccupied = squarePiece.Animation == "empty" ? false : true;
+
+				// determines what piece is occupying the square
+				((CheckMovement)square).pieceOnSquare = squarePiece.Animation;
 
 				chessBoard.AddChild(square);
 			}
@@ -77,7 +80,7 @@ public partial class ChessMemory : Node2D
 		chessBoard.Position = new Vector2(xDifference / 2, yDifference / 2);
 	}
 
-	private void PlacePieces(string currentCoordinate, AnimatedSprite2D pieceOnSquare)
+	private void PlacePieces(string currentCoordinate, AnimatedSprite2D pieceOnSquare, ColorRect square)
 	{
 		switch (currentCoordinate)
 		{
@@ -89,7 +92,7 @@ public partial class ChessMemory : Node2D
 				pieceOnSquare.Animation = "b-R";
 				break;
 
-			// White Knight placement
+			// Black Knight placement
 			case "B8":
 				pieceOnSquare.Animation = "b-N";
 				break;
@@ -97,6 +100,7 @@ public partial class ChessMemory : Node2D
 				pieceOnSquare.Animation = "b-N";
 				break;
 
+			// Black Bishop placement
 			case "C8":
 				pieceOnSquare.Animation = "b-B";
 				break;
@@ -104,7 +108,7 @@ public partial class ChessMemory : Node2D
 				pieceOnSquare.Animation = "b-B";
 				break;
 
-			// White King and Queen placement
+			// Black King & Queen placement
 			case "D8":
 				pieceOnSquare.Animation = "b-Q";
 				break;
@@ -142,14 +146,13 @@ public partial class ChessMemory : Node2D
 			case "E1":
 				pieceOnSquare.Animation = "w-K";
 				break;
+			default:
+				pieceOnSquare.Animation = "empty";
+				break;
 		}
 
+		// placement of Pawns
 		pieceOnSquare.Animation = currentCoordinate[1] == '2' ? "w-P" : pieceOnSquare.Animation;
 		pieceOnSquare.Animation = currentCoordinate[1] == '7' ? "b-P" : pieceOnSquare.Animation;
-	}
-
-	private void PlacePawns(string currentCoordinate, AnimatedSprite2D squarePiece)
-	{
-
 	}
 }

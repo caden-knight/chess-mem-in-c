@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://d25h4i4metnq4"]
+[gd_scene load_steps=17 format=3 uid="uid://d25h4i4metnq4"]
 
 [ext_resource type="FontFile" uid="uid://juisd8offaas" path="res://assets/fonts/south park.ttf" id="1_1v6oe"]
+[ext_resource type="Script" path="res://scripts/CheckMovement.cs" id="1_5w3ge"]
 [ext_resource type="Texture2D" uid="uid://bk153a87213sh" path="res://assets/chessSpriteSheet.png" id="2_bq17x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6m3e"]
@@ -103,7 +104,7 @@ animations = [{
 }, {
 "frames": [],
 "loop": false,
-"name": &"default",
+"name": &"empty",
 "speed": 0.0
 }, {
 "frames": [{
@@ -158,6 +159,7 @@ animations = [{
 [node name="ChessSquare" type="ColorRect"]
 offset_right = 132.0
 offset_bottom = 132.0
+script = ExtResource("1_5w3ge")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -181,4 +183,5 @@ vertical_alignment = 1
 position = Vector2(66, 66.25)
 scale = Vector2(0.4125, 0.410938)
 sprite_frames = SubResource("SpriteFrames_2vi0o")
+animation = &"empty"
 speed_scale = 0.0
