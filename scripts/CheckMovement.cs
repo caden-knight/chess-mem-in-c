@@ -38,10 +38,10 @@ public partial class CheckMovement : ColorRect
 						squareCoord = GetChild(0).GetChild<Label>(0).Text;
 						int rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 1;
 
+						GD.Print($"{squareCoord[0]}{rankNum}");
+						squareOccupied = false;
+						squareAnimation.Visible = squareOccupied;
 
-						Godot.Collections.Array<Node> caden = GetChildren();
-						squareAnimation.Animation = "empty";
-						GD.Print(caden[0]);
 					}
 				}
 			}
