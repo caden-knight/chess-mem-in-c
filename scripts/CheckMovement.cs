@@ -6,9 +6,15 @@ public partial class CheckMovement : ColorRect
 	private bool mouseClicked = false;
 	public bool squareOccupied = true;
 	public string pieceOnSquare = "empty";
+	public string squareCoord;
+
+	public override void _Ready()
+	{
+	}
 
 	public override void _Input(InputEvent @event)
 	{
+
 		if (@event is InputEventMouseButton mouseButton)
 		{
 			// check to see if player left clicked
@@ -21,9 +27,22 @@ public partial class CheckMovement : ColorRect
 				// REMEMBER THIS CODE!
 				if (GetGlobalRect().HasPoint(mousePosition))
 				{
-					GD.Print(GetChild(0).GetChild<Label>(0).Text);
+					GD.Print(squareCoord);
 					GD.Print(squareOccupied);
 					GD.Print(pieceOnSquare);
+
+					AnimatedSprite2D squareAnimation = GetChild(0).GetChild<AnimatedSprite2D>(1);
+
+					if (squareAnimation.Animation == "w-P")
+					{
+						squareCoord = GetChild(0).GetChild<Label>(0).Text;
+						int rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 1;
+
+
+						Godot.Collections.Array<Node> caden = GetChildren();
+						squareAnimation.Animation = "empty";
+						GD.Print(caden[0]);
+					}
 				}
 			}
 		}

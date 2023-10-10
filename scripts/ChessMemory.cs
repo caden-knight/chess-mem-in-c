@@ -14,9 +14,6 @@ public partial class ChessMemory : Node2D
 	public override void _Ready()
 	{
 		SetupBoard();
-
-		// gets the variable from the CheckMovement script
-		// ColorRect square = GetNode<ColorRect>("/root/ChessMemory/ChessBoard/ChessSquare");
 	}
 
 	private void SetupBoard()
