@@ -6,9 +6,12 @@ public partial class ChessMemory : Node2D
 {
 	[Export]
 	public Node2D chessBoard;
+
 	private int squareCount = 0;
 	private bool isWhiteSquare = true;
 	private Vector2 vp;
+	private string[] coordLetters = { "A", "B", "C", "D", "E", "F", "G", "H" };
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -24,7 +27,6 @@ public partial class ChessMemory : Node2D
 		// TODO: invert board if player wants to play as black
 
 		// keep track of current square coordinate
-		string[] coordLetters = { "A", "B", "C", "D", "E", "F", "G", "H" };
 
 		vp = GetViewportRect().Size;
 
@@ -33,14 +35,16 @@ public partial class ChessMemory : Node2D
 		{
 			for (int file = 1; file <= 8; file++)
 			{
-				Control square = squareScene.Instantiate<Control>();
+				Control squareControl = squareScene.Instantiate<Control>();
+				ColorRect square = squareControl.GetChild<ColorRect>(0);
 
 				// square styling
 				square.Color = isWhiteSquare ? Colors.White : Colors.DarkGray;
-				Label coordLabel = square.GetChild<Label>(0);
-				AnimatedSprite2D squarePiece = square.GetChild<AnimatedSprite2D>(1);
+				Label coordLabel = squareControl.GetChild<Label>(1);
+				AnimatedSprite2D squarePiece = squareControl.GetChild<AnimatedSprite2D>(2);
 				string currentCoord = $"{coordLetters[file - 1]}{9 - rank}";
 				coordLabel.Text = currentCoord;
+
 
 				// lays out the squares
 				float squareLength = square.GetRect().Size.Y;
@@ -49,25 +53,25 @@ public partial class ChessMemory : Node2D
 				float fileOffset = (file - 1) * squareWidth;
 				float rankOffset = (rank - 1) * squareLength;
 
-				square.Position = new Vector2(fileOffset, rankOffset);
+				squareControl.Position = new Vector2(fileOffset, rankOffset);
 
 				// enures beginning and ending rank squares are colored correctly
 				isWhiteSquare = file != 8 ? !isWhiteSquare : isWhiteSquare;
 
-				PlacePieces(currentCoord, squarePiece, square);
+				PlacePieces(currentCoord, squarePiece);
 
 				// determines whether or not a square is occupied or empty
-				((CheckMovement)square).squareOccupied = squarePiece.Animation == "empty" ? false : true;
+				((CheckMovement)squareControl).squareOccupied = squarePiece.Animation == "empty" ? false : true;
 
 				// determines what piece is occupying the square
-				((CheckMovement)square).pieceOnSquare = squarePiece.Animation;
+				((CheckMovement)squareControl).pieceOnSquare = squarePiece.Animation;
 
-				chessBoard.AddChild(square);
+				chessBoard.AddChild(squareControl);
 			}
 		}
 
-		// get the reference to one of the squares
-		ColorRect squareRef = chessBoard.GetChild<ColorRect>(0);
+		// get a reference to one of the squares
+		ColorRect squareRef = chessBoard.GetChild<Control>(0).GetChild<ColorRect>(0);
 
 		// calculate the size of the squares. used for centering the board
 		float xDifference = vp.X - (squareRef.GetRect().Size.X * 8);
@@ -77,7 +81,7 @@ public partial class ChessMemory : Node2D
 		chessBoard.Position = new Vector2(xDifference / 2, yDifference / 2);
 	}
 
-	private void PlacePieces(string currentCoordinate, AnimatedSprite2D pieceOnSquare, ColorRect square)
+	private void PlacePieces(string currentCoordinate, AnimatedSprite2D pieceOnSquare)
 	{
 		switch (currentCoordinate)
 		{
