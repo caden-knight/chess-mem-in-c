@@ -1,4 +1,4 @@
-res://scenes/chess_memory.tscn
 res://scenes/chess_square.tscn
+res://scenes/chess_memory.tscn
 res://scripts/CheckMovement.cs
 res://scripts/ChessMemory.cs

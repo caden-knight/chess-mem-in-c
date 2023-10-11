@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://juisd8offaas" path="res://assets/fonts/south park.ttf" id="1_1v6oe"]
 [ext_resource type="Script" path="res://scripts/CheckMovement.cs" id="1_5w3ge"]
 [ext_resource type="Texture2D" uid="uid://bk153a87213sh" path="res://assets/chessSpriteSheet.png" id="2_bq17x"]
-[ext_resource type="Texture2D" path="res://assets/highlight.png" id="4_712f6"]
+[ext_resource type="Texture2D" uid="uid://du1y7tp5uvtvc" path="res://assets/highlight.png" id="4_712f6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6m3e"]
 atlas = ExtResource("2_bq17x")

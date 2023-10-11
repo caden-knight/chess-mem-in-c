@@ -3,17 +3,21 @@ using System;
 
 public partial class CheckMovement : Control
 {
+    public Node2D chessBoard;
+
     public bool squareOccupied = true;
     public string pieceOnSquare;
     public string squareCoord;
 
     private bool mouseClicked = false;
     private bool highlighted = false;
+    private Vector2 highlightScale = new Vector2(0.03f, 0.03f);
     private Color originalColor;
 
     public override void _Ready()
     {
         originalColor = GetChild<ColorRect>(0).Color;
+        chessBoard = GetNode<Node2D>("/root/ChessMemory/ChessBoard");
     }
 
     public override void _Input(InputEvent @event)
@@ -31,15 +35,19 @@ public partial class CheckMovement : Control
                 // REMEMBER THIS CODE!
                 if (GetGlobalRect().HasPoint(mousePosition))
                 {
-                    GD.Print(squareCoord);
-                    GD.Print(squareOccupied);
-                    GD.Print(pieceOnSquare);
+
+
 
                     AnimatedSprite2D squareAnimation = GetChild<AnimatedSprite2D>(2);
 
                     if (squareAnimation.Animation == "w-P")
                     {
                         squareCoord = GetChild<Label>(1).Text;
+
+                        GD.Print(squareCoord + "hi");
+                        GD.Print("hi");
+                        GD.Print(squareOccupied);
+                        GD.Print(pieceOnSquare);
 
                         // FIXME: potential problem if planning on using squareOccupied in if statement above
                         squareOccupied = false;
@@ -58,7 +66,12 @@ public partial class CheckMovement : Control
 
                             if (squareLabel == destinationCoord1 || squareLabel == destinationCoord2)
                             {
-                                square.GetChild<ColorRect>(0).Color = Colors.Blue;
+                                AnimatedSprite2D squareSprite = square.GetChild<AnimatedSprite2D>(2);
+                                squareSprite.Animation = "highlight";
+
+
+
+                                squareSprite.Scale = highlightScale;
                             }
 
                             // if (squareLabel == squareCoord)

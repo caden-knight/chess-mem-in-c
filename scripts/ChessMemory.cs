@@ -26,8 +26,6 @@ public partial class ChessMemory : Node2D
 
 		// TODO: invert board if player wants to play as black
 
-		// keep track of current square coordinate
-
 		vp = GetViewportRect().Size;
 
 		// create the chessboard
@@ -39,10 +37,11 @@ public partial class ChessMemory : Node2D
 				ColorRect square = squareControl.GetChild<ColorRect>(0);
 
 				// square styling
-				square.Color = isWhiteSquare ? Colors.White : Colors.DarkGray;
 				Label coordLabel = squareControl.GetChild<Label>(1);
 				AnimatedSprite2D squarePiece = squareControl.GetChild<AnimatedSprite2D>(2);
 				string currentCoord = $"{coordLetters[file - 1]}{9 - rank}";
+
+				square.Color = isWhiteSquare ? Colors.White : Colors.DarkGray;
 				coordLabel.Text = currentCoord;
 
 
