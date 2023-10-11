@@ -1,68 +1,80 @@
-using Godot;
-using System;
+// using Godot;
+// using System;
 
-public partial class CheckMovement : ColorRect
-{
-	private bool mouseClicked = false;
-	public bool squareOccupied = true;
-	public string pieceOnSquare = "empty";
-	public string squareCoord;
+// public partial class CheckMovement : ColorRect
+// {
+// 	public bool squareOccupied = true;
+// 	public string pieceOnSquare = "empty";
+// 	public string squareCoord;
 
-	public override void _Ready()
-	{
-	}
+// 	private bool mouseClicked = false;
+// 	private bool highlighted = false;
+// 	private Color originalColor;
 
-	public override void _Input(InputEvent @event)
-	{
+// 	public override void _Ready()
+// 	{
+// 		originalColor = Color;
+// 	}
 
-		if (@event is InputEventMouseButton mouseButton)
-		{
-			// check to see if player left clicked
-			if (mouseButton.ButtonIndex == MouseButton.Left && mouseButton.Pressed)
-			{
-				// get mouse position of where the player clicked
-				Vector2 mousePosition = GetGlobalMousePosition();
+// 	public override void _Input(InputEvent @event)
+// 	{
 
-				// check to see if player clicked somewhere on the chessboard
-				// REMEMBER THIS CODE!
-				if (GetGlobalRect().HasPoint(mousePosition))
-				{
-					GD.Print(squareCoord);
-					GD.Print(squareOccupied);
-					GD.Print(pieceOnSquare);
+// 		if (@event is InputEventMouseButton mouseButton)
+// 		{
+// 			// check to see if player left clicked
+// 			if (mouseButton.ButtonIndex == MouseButton.Left && mouseButton.Pressed)
+// 			{
+// 				// get mouse position of where the player clicked
+// 				Vector2 mousePosition = GetGlobalMousePosition();
 
-					AnimatedSprite2D squareAnimation = GetChild(0).GetChild<AnimatedSprite2D>(1);
+// 				// check to see if player clicked somewhere on the chessboard
+// 				// REMEMBER THIS CODE!
+// 				if (GetGlobalRect().HasPoint(mousePosition))
+// 				{
+// 					GD.Print(squareCoord);
+// 					GD.Print(squareOccupied);
+// 					GD.Print(pieceOnSquare);
 
-					if (squareAnimation.Animation == "w-P")
-					{
-						squareCoord = GetChild(0).GetChild<Label>(0).Text;
-						int rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 1;
-						squareCoord = $"{squareCoord[0]}{rankNum}";
+// 					AnimatedSprite2D squareAnimation = GetChild(0).GetChild<AnimatedSprite2D>(1);
 
-						GD.Print();
-						squareOccupied = false;
-						squareAnimation.Visible = squareOccupied;
+// 					if (squareAnimation.Animation == "w-P")
+// 					{
+// 						squareCoord = GetChild(0).GetChild<Label>(0).Text;
 
-						Godot.Collections.Array<Node> squares = GetNode("/root/ChessMemory/ChessBoard").GetChildren();
+// 						// FIXME: potential problem if planning on using squareOccupied in if statement above
+// 						squareOccupied = false;
+// 						// squareAnimation.Visible = squareOccupied;
 
-						foreach (Node square in squares)
-						{
-							string squareLabel = square.GetChild(0).GetChild<Label>(0).Text;
+// 						Godot.Collections.Array<Node> squares = GetNode("/root/ChessMemory/ChessBoard").GetChildren();
 
-							if (squareLabel == squareCoord)
-							{
-								GD.Print("destination");
-								ColorRect squareDest = (ColorRect)square;
+// 						foreach (ColorRect square in squares)
+// 						{
+// 							//TODO: come up with better variable names. they're getting confusing.
+// 							string squareLabel = square.GetChild(0).GetChild<Label>(0).Text;
+// 							int rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 1;
+// 							int rankNumOption2 = Convert.ToInt32(squareCoord[1].ToString()) + 2;
+// 							string destinationCoord1 = $"{squareCoord[0]}{rankNum}";
+// 							string destinationCoord2 = $"{squareCoord[0]}{rankNumOption2}";
 
-								AnimatedSprite2D squareDestAnimation = squareDest.GetChild(0).GetChild<AnimatedSprite2D>(1);
+// 							if (squareLabel == destinationCoord1 || squareLabel == destinationCoord2)
+// 							{
+// 								square.Color = Colors.Blue;
+// 							}
 
-								squareDestAnimation.Animation = "w-P";
-							}
+// 							// if (squareLabel == squareCoord)
+// 							// {
+// 							// 	GD.Print("destination");
+// 							// 	ColorRect squareDest = (ColorRect)square;
 
-						}
-					}
-				}
-			}
-		}
-	}
-}
+// 							// 	AnimatedSprite2D squareDestAnimation = squareDest.GetChild(0).GetChild<AnimatedSprite2D>(1);
+
+// 							// 	squareDestAnimation.Animation = "w-P";
+// 							// }
+
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }

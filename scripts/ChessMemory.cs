@@ -33,12 +33,12 @@ public partial class ChessMemory : Node2D
 		{
 			for (int file = 1; file <= 8; file++)
 			{
-				ColorRect square = squareScene.Instantiate<ColorRect>();
+				Control square = squareScene.Instantiate<Control>();
 
 				// square styling
 				square.Color = isWhiteSquare ? Colors.White : Colors.DarkGray;
-				Label coordLabel = square.GetChild(0).GetChild<Label>(0);
-				AnimatedSprite2D squarePiece = square.GetChild(0).GetChild<AnimatedSprite2D>(1);
+				Label coordLabel = square.GetChild<Label>(0);
+				AnimatedSprite2D squarePiece = square.GetChild<AnimatedSprite2D>(1);
 				string currentCoord = $"{coordLetters[file - 1]}{9 - rank}";
 				coordLabel.Text = currentCoord;
 
