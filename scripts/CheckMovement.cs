@@ -37,11 +37,29 @@ public partial class CheckMovement : ColorRect
 					{
 						squareCoord = GetChild(0).GetChild<Label>(0).Text;
 						int rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 1;
+						squareCoord = $"{squareCoord[0]}{rankNum}";
 
-						GD.Print($"{squareCoord[0]}{rankNum}");
+						GD.Print();
 						squareOccupied = false;
 						squareAnimation.Visible = squareOccupied;
 
+						Godot.Collections.Array<Node> squares = GetNode("/root/ChessMemory/ChessBoard").GetChildren();
+
+						foreach (Node square in squares)
+						{
+							string squareLabel = square.GetChild(0).GetChild<Label>(0).Text;
+
+							if (squareLabel == squareCoord)
+							{
+								GD.Print("destination");
+								ColorRect squareDest = (ColorRect)square;
+
+								AnimatedSprite2D squareDestAnimation = squareDest.GetChild(0).GetChild<AnimatedSprite2D>(1);
+
+								squareDestAnimation.Animation = "w-P";
+							}
+
+						}
 					}
 				}
 			}
