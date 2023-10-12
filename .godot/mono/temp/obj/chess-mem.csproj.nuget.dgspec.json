@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "A:\\GameDev\\Godot\\godot-projects\\chess-mem-in-c\\chess-mem.csproj": {}
+    "/Users/cadenmorrison/Documents/godot-projects/chess-mem-in-c/chess-mem.csproj": {}
   },
   "projects": {
-    "A:\\GameDev\\Godot\\godot-projects\\chess-mem-in-c\\chess-mem.csproj": {
+    "/Users/cadenmorrison/Documents/godot-projects/chess-mem-in-c/chess-mem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\GameDev\\Godot\\godot-projects\\chess-mem-in-c\\chess-mem.csproj",
+        "projectUniqueName": "/Users/cadenmorrison/Documents/godot-projects/chess-mem-in-c/chess-mem.csproj",
         "projectName": "chess-mem",
-        "projectPath": "A:\\GameDev\\Godot\\godot-projects\\chess-mem-in-c\\chess-mem.csproj",
-        "packagesPath": "C:\\Users\\caden\\.nuget\\packages\\",
-        "outputPath": "A:\\GameDev\\Godot\\godot-projects\\chess-mem-in-c\\.godot\\mono\\temp\\obj\\",
+        "projectPath": "/Users/cadenmorrison/Documents/godot-projects/chess-mem-in-c/chess-mem.csproj",
+        "packagesPath": "/Users/cadenmorrison/.nuget/packages/",
+        "outputPath": "/Users/cadenmorrison/Documents/godot-projects/chess-mem-in-c/.godot/mono/temp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\caden\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/cadenmorrison/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -62,12 +62,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.21, 6.0.21]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.21, 6.0.21]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }
