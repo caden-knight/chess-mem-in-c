@@ -18,6 +18,7 @@ public partial class CheckMovement : Control
     {
         originalColor = GetChild<ColorRect>(0).Color;
         chessBoard = GetNode<Node2D>("/root/ChessMemory/ChessBoard");
+
     }
 
     public override void _Input(InputEvent @event)
@@ -35,8 +36,7 @@ public partial class CheckMovement : Control
                 // REMEMBER THIS CODE!
                 if (GetGlobalRect().HasPoint(mousePosition))
                 {
-
-
+                    ClearHighlightedSquares(chessBoard);
 
                     AnimatedSprite2D squareAnimation = GetChild<AnimatedSprite2D>(2);
 
@@ -44,8 +44,6 @@ public partial class CheckMovement : Control
                     {
                         squareCoord = GetChild<Label>(1).Text;
 
-                        GD.Print(squareCoord + "hi");
-                        GD.Print("hi");
                         GD.Print(squareOccupied);
                         GD.Print(pieceOnSquare);
 
@@ -68,6 +66,7 @@ public partial class CheckMovement : Control
                             {
                                 AnimatedSprite2D squareSprite = square.GetChild<AnimatedSprite2D>(2);
                                 squareSprite.Animation = "highlight";
+                                squareSprite.Visible = true;
 
 
 
@@ -87,6 +86,21 @@ public partial class CheckMovement : Control
                         }
                     }
                 }
+            }
+        }
+    }
+    private void ClearHighlightedSquares(Node2D chessBoard)
+    {
+        Godot.Collections.Array<Node> squares = chessBoard.GetChildren();
+
+        foreach (Control square in squares)
+        {
+            AnimatedSprite2D squareAnim = square.GetChild<AnimatedSprite2D>(2);
+            // GD.Print("caden");
+
+            if (squareAnim.Animation == "highlight")
+            {
+                squareAnim.Visible = false;
             }
         }
     }
