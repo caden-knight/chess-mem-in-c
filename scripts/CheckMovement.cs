@@ -125,7 +125,8 @@ public partial class CheckMovement : Control
 		}
 	}
 
-	// TODO: complete logic for knight moves
+	// TODO: function correctly moves knight in the up 2 over 1 pattern
+	// still needs to calculate up 1 over 2 pattern
 	private void DetermineKnightMoves(Control square)
 	{
 		// variables for calculating and identifying the coordinate
@@ -147,30 +148,28 @@ public partial class CheckMovement : Control
 					string letterCoord1 = i <= 6 ? coordLetters[i + 1] : null;
 					string letterCoord2 = i >= 1 ? coordLetters[i - 1] : null;
 
+					GD.Print(letterCoord1);
+					GD.Print(letterCoord2);
+
+					//FIXME: disgusting code, refactor this later
 					if (letterCoord1 != null)
 					{
 						rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
 						rankNumOption2 = Convert.ToInt32(squareCoord[1].ToString()) - 2;
 
 						destinationCoord1 = rankNum <= 8 ? $"{letterCoord1}{rankNum}" : null;
-						destinationCoord2 = rankNumOption2 >= 1 ? $"{letterCoord2}{rankNumOption2}" : null;
-
-						GD.Print(destinationCoord2);
-
 
 						if (destinationCoord1 != null)
 						{
-							// GD.Print(destinationCoord1);
 							availableMoves.Add(destinationCoord1);
 						}
 						if (letterCoord2 != null)
 						{
+							destinationCoord2 = rankNum <= 8 ? $"{letterCoord2}{rankNum}" : null;
+
 							if (destinationCoord2 != null)
 							{
-								GD.Print(destinationCoord2);
-
 								availableMoves.Add(destinationCoord2);
-
 							}
 						}
 
