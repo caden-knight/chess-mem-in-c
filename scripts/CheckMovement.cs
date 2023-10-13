@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class CheckMovement : Control
 {
@@ -55,7 +56,6 @@ public partial class CheckMovement : Control
 		foreach (Control square in squares)
 		{
 			AnimatedSprite2D squareAnim = square.GetChild<AnimatedSprite2D>(2);
-			// GD.Print("caden");
 
 			if (squareAnim.Animation == "highlight")
 			{
@@ -130,23 +130,64 @@ public partial class CheckMovement : Control
 	{
 		// variables for calculating and identifying the coordinate
 		string squareLabel = square.GetChild<Label>(1).Text;
-		int rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
-		int rankNumOption2 = Convert.ToInt32(squareCoord[1].ToString()) - 2;
-		string destinationCoord1 = $"{squareCoord[0]}{rankNum}";
-		string destinationCoord2 = $"{squareCoord[0]}{rankNumOption2}";
+		int rankNum;
+		int rankNumOption2;
+		string destinationCoord1 = "";
+		string destinationCoord2 = "";
+		List<string> availableMoves = new List<string>();
 
 		// ensures the square isn't occupied
 		// so the game won't highlight a spot that is occupied by another piece
 		if (!((CheckMovement)square).squareOccupied)
 		{
-			if (squareLabel == destinationCoord1 || squareLabel == destinationCoord2)
+			for (int i = 0; i < coordLetters.Length; i++)
 			{
-				// Highlight move squares and adjust the highlight's sprite size
-				AnimatedSprite2D squareSprite = square.GetChild<AnimatedSprite2D>(2);
-				squareSprite.Animation = "highlight";
-				squareSprite.Visible = true; // make it visible
-				squareSprite.Scale = highlightScale;
+				if (coordLetters[i] == squareCoord[0].ToString())
+				{
+					string letterCoord1 = i <= 5 ? coordLetters[i + 1] : null;
+					string letterCoord2 = i >= 2 ? coordLetters[i - 1] : null;
+
+					if (letterCoord1 != null)
+					{
+						rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
+						rankNumOption2 = Convert.ToInt32(squareCoord[1].ToString()) - 2;
+
+
+						destinationCoord1 = rankNum <= 8 ? $"{letterCoord1}{rankNum}" : null;
+						destinationCoord2 = rankNumOption2 > 0 ? $"{letterCoord2}{rankNumOption2}" : null;
+
+						if (destinationCoord1 != null)
+						{
+							GD.Print(destinationCoord1);
+							availableMoves.Add(destinationCoord1);
+						}
+
+						if (destinationCoord2 != null)
+						{
+							GD.Print(destinationCoord2);
+
+							availableMoves.Add(destinationCoord2);
+
+						}
+
+					}
+
+
+				}
 			}
+
+			for (int i = 0; i < availableMoves.Count; i++)
+			{
+				if (squareLabel == availableMoves[i])
+				{
+					// Highlight move squares and adjust the highlight's sprite size
+					AnimatedSprite2D squareSprite = square.GetChild<AnimatedSprite2D>(2);
+					squareSprite.Animation = "highlight";
+					squareSprite.Visible = true; // make it visible since it may have been invisible
+					squareSprite.Scale = highlightScale;
+				}
+			}
+
 
 		}
 	}
