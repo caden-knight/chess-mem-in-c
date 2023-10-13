@@ -144,37 +144,43 @@ public partial class CheckMovement : Control
 			{
 				if (coordLetters[i] == squareCoord[0].ToString())
 				{
-					string letterCoord1 = i <= 5 ? coordLetters[i + 1] : null;
-					string letterCoord2 = i >= 2 ? coordLetters[i - 1] : null;
+					string letterCoord1 = i <= 6 ? coordLetters[i + 1] : null;
+					string letterCoord2 = i >= 1 ? coordLetters[i - 1] : null;
 
 					if (letterCoord1 != null)
 					{
 						rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
 						rankNumOption2 = Convert.ToInt32(squareCoord[1].ToString()) - 2;
 
-
 						destinationCoord1 = rankNum <= 8 ? $"{letterCoord1}{rankNum}" : null;
-						destinationCoord2 = rankNumOption2 > 0 ? $"{letterCoord2}{rankNumOption2}" : null;
+						destinationCoord2 = rankNumOption2 >= 1 ? $"{letterCoord2}{rankNumOption2}" : null;
+
+						GD.Print(destinationCoord2);
+
 
 						if (destinationCoord1 != null)
 						{
-							GD.Print(destinationCoord1);
+							// GD.Print(destinationCoord1);
 							availableMoves.Add(destinationCoord1);
 						}
-
-						if (destinationCoord2 != null)
+						if (letterCoord2 != null)
 						{
-							GD.Print(destinationCoord2);
+							if (destinationCoord2 != null)
+							{
+								GD.Print(destinationCoord2);
 
-							availableMoves.Add(destinationCoord2);
+								availableMoves.Add(destinationCoord2);
 
+							}
 						}
 
+
+
 					}
-
-
 				}
 			}
+
+			GD.Print(availableMoves.Count);
 
 			for (int i = 0; i < availableMoves.Count; i++)
 			{
