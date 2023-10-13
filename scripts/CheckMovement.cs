@@ -14,12 +14,15 @@ public partial class CheckMovement : Control
 	private bool highlighted = false;
 	private Vector2 highlightScale = new Vector2(0.03f, 0.03f);
 	private Vector2 normalAnimScale = new Vector2(0.412f, 0.411f);
-	private string[] coordLetters = { "A", "B", "C", "D", "E", "F", "G", "H" };
+	private List<string> coordLetters;
+	Singleton singleton;
 
 
 	public override void _Ready()
 	{
 		chessBoard = GetNode<Node2D>("/root/ChessMemory/ChessBoard");
+		singleton = GetNode<Singleton>("/root/Singleton");
+		coordLetters = singleton.coordLetters;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -129,6 +132,8 @@ public partial class CheckMovement : Control
 	// still needs to calculate up 1 over 2 pattern
 	private void DetermineKnightMoves(Control square)
 	{
+
+		//FIXME: disgusting code, refactor 
 		// variables for calculating and identifying the coordinate
 		string squareLabel = square.GetChild<Label>(1).Text;
 		int rankNum;
@@ -141,8 +146,9 @@ public partial class CheckMovement : Control
 		// so the game won't highlight a spot that is occupied by another piece
 		if (!((CheckMovement)square).squareOccupied)
 		{
-			for (int i = 0; i < coordLetters.Length; i++)
+			for (int i = 0; i < coordLetters.Count; i++)
 			{
+
 				if (coordLetters[i] == squareCoord[0].ToString())
 				{
 					string letterCoord1 = i <= 6 ? coordLetters[i + 1] : null;
@@ -151,7 +157,6 @@ public partial class CheckMovement : Control
 					GD.Print(letterCoord1);
 					GD.Print(letterCoord2);
 
-					//FIXME: disgusting code, refactor this later
 					if (letterCoord1 != null)
 					{
 						rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
@@ -163,18 +168,16 @@ public partial class CheckMovement : Control
 						{
 							availableMoves.Add(destinationCoord1);
 						}
-						if (letterCoord2 != null)
+					}
+					if (letterCoord2 != null)
+					{
+						rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
+						destinationCoord2 = rankNum <= 8 ? $"{letterCoord2}{rankNum}" : null;
+
+						if (destinationCoord2 != null)
 						{
-							destinationCoord2 = rankNum <= 8 ? $"{letterCoord2}{rankNum}" : null;
-
-							if (destinationCoord2 != null)
-							{
-								availableMoves.Add(destinationCoord2);
-							}
+							availableMoves.Add(destinationCoord2);
 						}
-
-
-
 					}
 				}
 			}
@@ -192,8 +195,15 @@ public partial class CheckMovement : Control
 					squareSprite.Scale = highlightScale;
 				}
 			}
-
-
 		}
+	}
+
+	private string AddLetters(List<string> letters, string letterToAdd, int amount)
+	{
+		// find the index of the letter that appears in the array
+		// letters.index(letter)
+		// 
+
+		return "";
 	}
 }
