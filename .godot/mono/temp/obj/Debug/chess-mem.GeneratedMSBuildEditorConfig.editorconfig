@@ -1,6 +1,6 @@
 is_global = true
 build_property.GodotDisabledSourceGenerators = 
-build_property.GodotProjectDir = /Users/cadenmorrison/Documents/godot-projects/chess-mem-in-c/
+build_property.GodotProjectDir = A:\GameDev\Godot\godot-projects\chess-mem-in-c\
 build_property.GodotProjectDirBase64 = 
 build_property.GodotSourceGenerators = 
 build_property.IsGodotToolsProject = 
@@ -13,4 +13,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = chessmem
-build_property.ProjectDir = /Users/cadenmorrison/Documents/godot-projects/chess-mem-in-c/
+build_property.ProjectDir = A:\GameDev\Godot\godot-projects\chess-mem-in-c\

@@ -23,6 +23,7 @@ public partial class CheckMovement : Control
 		chessBoard = GetNode<Node2D>("/root/ChessMemory/ChessBoard");
 		singleton = GetNode<Singleton>("/root/Singleton");
 		coordLetters = singleton.coordLetters;
+
 	}
 
 	public override void _Input(InputEvent @event)
@@ -33,6 +34,7 @@ public partial class CheckMovement : Control
 			// check to see if player left clicked
 			if (mouseButton.ButtonIndex == MouseButton.Left && mouseButton.Pressed)
 			{
+				GD.Print(singleton.allCoords[7]);
 				// get mouse position of where the player clicked
 				Vector2 mousePosition = GetGlobalMousePosition();
 
@@ -42,7 +44,6 @@ public partial class CheckMovement : Control
 				// REMEMBER THIS CODE!
 				if (GetGlobalRect().HasPoint(mousePosition))
 				{
-					GD.Print(squareOccupied);
 					ClearHighlightedSquares(chessBoard);
 
 					AnimatedSprite2D squareAnimation = GetChild<AnimatedSprite2D>(2);
@@ -76,8 +77,8 @@ public partial class CheckMovement : Control
 			case "w-P":
 				squareCoord = GetChild<Label>(1).Text;
 
-				GD.Print(squareOccupied);
-				GD.Print(pieceOnSquare);
+				// Keep track of the current piece selected to know which code to run
+				singleton.pieceSelected = Singleton.Piece.Pawn;
 
 				// FIXME: potential problem if planning on using squareOccupied in if statement above
 				// squareOccupied = false;
@@ -128,11 +129,10 @@ public partial class CheckMovement : Control
 		}
 	}
 
-	// TODO: function correctly moves knight in the up 2 over 1 pattern
-	// still needs to calculate up 1 over 2 pattern
+	//  function correctly moves knight in the up 2 over 1 pattern
+	// TODO: still needs to calculate up 1 over 2 pattern
 	private void DetermineKnightMoves(Control square)
 	{
-
 		//FIXME: disgusting code, refactor 
 		// variables for calculating and identifying the coordinate
 		string squareLabel = square.GetChild<Label>(1).Text;

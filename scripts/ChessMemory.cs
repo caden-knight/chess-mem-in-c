@@ -6,6 +6,7 @@ public partial class ChessMemory : Node2D
 {
 	[Export]
 	public Node2D chessBoard;
+	public Singleton singleton;
 
 	private int squareCount = 0;
 	private bool isWhiteSquare = true;
@@ -16,6 +17,8 @@ public partial class ChessMemory : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		singleton = GetNode<Singleton>("/root/Singleton");
+
 		SetupBoard();
 	}
 
@@ -33,14 +36,17 @@ public partial class ChessMemory : Node2D
 		{
 			for (int file = 1; file <= 8; file++)
 			{
+
+				Vector2 currentVectorCoord = new(file, rank);
+				singleton.allCoords.Add(currentVectorCoord);
+
 				Control squareControl = squareScene.Instantiate<Control>();
 				ColorRect square = squareControl.GetChild<ColorRect>(0);
 
 				// square styling
+				string currentCoord = $"{coordLetters[file - 1]}{9 - rank}";
 				Label coordLabel = squareControl.GetChild<Label>(1);
 				AnimatedSprite2D squarePiece = squareControl.GetChild<AnimatedSprite2D>(2);
-				string currentCoord = $"{coordLetters[file - 1]}{9 - rank}";
-
 				square.Color = isWhiteSquare ? Colors.White : Colors.DarkGray;
 				coordLabel.Text = currentCoord;
 
