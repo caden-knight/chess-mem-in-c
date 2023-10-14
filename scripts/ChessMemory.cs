@@ -9,7 +9,7 @@ public partial class ChessMemory : Node2D
 
 	private int squareCount = 0;
 	private bool isWhiteSquare = true;
-	private Vector2 vp;
+	private Vector2 viewport;
 	private string[] coordLetters = { "A", "B", "C", "D", "E", "F", "G", "H" };
 
 
@@ -26,7 +26,7 @@ public partial class ChessMemory : Node2D
 
 		// TODO: invert board if player wants to play as black
 
-		vp = GetViewportRect().Size;
+		viewport = GetViewportRect().Size;
 
 		// create the chessboard
 		for (int rank = 1; rank <= 8; rank++)
@@ -73,8 +73,8 @@ public partial class ChessMemory : Node2D
 		ColorRect squareRef = chessBoard.GetChild<Control>(0).GetChild<ColorRect>(0);
 
 		// calculate the size of the squares. used for centering the board
-		float xDifference = vp.X - (squareRef.GetRect().Size.X * 8);
-		float yDifference = vp.Y - (squareRef.GetRect().Size.Y * 8);
+		float xDifference = viewport.X - (squareRef.GetRect().Size.X * 8);
+		float yDifference = viewport.Y - (squareRef.GetRect().Size.Y * 8);
 
 		// centers the chessboard
 		chessBoard.Position = new Vector2(xDifference / 2, yDifference / 2);
