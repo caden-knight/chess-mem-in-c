@@ -37,7 +37,7 @@ public partial class ChessMemory : Node2D
 			for (int file = 1; file <= 8; file++)
 			{
 
-				Vector2 currentVectorCoord = new(file, rank);
+				Vector2 currentVectorCoord = new(file, 9 - rank);
 				singleton.allCoords.Add(currentVectorCoord);
 
 				Control squareControl = squareScene.Instantiate<Control>();
@@ -63,13 +63,14 @@ public partial class ChessMemory : Node2D
 				// enures beginning and ending rank squares are colored correctly
 				isWhiteSquare = file != 8 ? !isWhiteSquare : isWhiteSquare;
 
-				PlacePieces(currentCoord, squarePiece);
+				PlacePieces(currentVectorCoord, squarePiece);
 
 				// determines whether or not a square is occupied or empty
 				((CheckMovement)squareControl).squareOccupied = squarePiece.Animation == "empty" ? false : true;
 
-				// determines what piece is occupying the square
+				// determines what piece is occupying the square and where the piece is
 				((CheckMovement)squareControl).pieceOnSquare = squarePiece.Animation;
+				((CheckMovement)squareControl).vectorCoord = currentVectorCoord;
 
 				chessBoard.AddChild(squareControl);
 			}
@@ -86,70 +87,72 @@ public partial class ChessMemory : Node2D
 		chessBoard.Position = new Vector2(xDifference / 2, yDifference / 2);
 	}
 
-	private void PlacePieces(string currentCoordinate, AnimatedSprite2D pieceOnSquare)
+	private void PlacePieces(Vector2 currentCoordinate, AnimatedSprite2D pieceOnSquare)
 	{
+
 		switch (currentCoordinate)
 		{
 			// Black Rook placement
-			case "A8":
+			case Vector2(1, 8):
 				pieceOnSquare.Animation = "b-R";
 				break;
-			case "H8":
+			case Vector2(8, 8):
 				pieceOnSquare.Animation = "b-R";
 				break;
 
 			// Black Knight placement
-			case "B8":
+			case Vector2(2, 8):
 				pieceOnSquare.Animation = "b-N";
+
 				break;
-			case "G8":
+			case Vector2(7, 8):
 				pieceOnSquare.Animation = "b-N";
 				break;
 
 			// Black Bishop placement
-			case "C8":
+			case Vector2(3, 8):
 				pieceOnSquare.Animation = "b-B";
 				break;
-			case "F8":
+			case Vector2(6, 8):
 				pieceOnSquare.Animation = "b-B";
 				break;
 
 			// Black King & Queen placement
-			case "D8":
+			case Vector2(4, 8):
 				pieceOnSquare.Animation = "b-Q";
 				break;
-			case "E8":
+			case Vector2(5, 8):
 				pieceOnSquare.Animation = "b-K";
 				break;
 
 			// White Rook placement
-			case "A1":
+			case Vector2(1, 1):
 				pieceOnSquare.Animation = "w-R";
 				break;
-			case "H1":
+			case Vector2(8, 1):
 				pieceOnSquare.Animation = "w-R";
 				break;
 
 			// White Knight placement
-			case "B1":
+			case Vector2(2, 1):
 				pieceOnSquare.Animation = "w-N";
 				break;
-			case "G1":
+			case Vector2(7, 1):
 				pieceOnSquare.Animation = "w-N";
 				break;
 
-			case "C1":
+			case Vector2(3, 1):
 				pieceOnSquare.Animation = "w-B";
 				break;
-			case "F1":
+			case Vector2(6, 1):
 				pieceOnSquare.Animation = "w-B";
 				break;
 
 			// White King and Queen placement
-			case "D1":
+			case Vector2(4, 1):
 				pieceOnSquare.Animation = "w-Q";
 				break;
-			case "E1":
+			case Vector2(5, 1):
 				pieceOnSquare.Animation = "w-K";
 				break;
 			default:
@@ -158,7 +161,7 @@ public partial class ChessMemory : Node2D
 		}
 
 		// placement of Pawns
-		pieceOnSquare.Animation = currentCoordinate[1] == '2' ? "w-P" : pieceOnSquare.Animation;
-		pieceOnSquare.Animation = currentCoordinate[1] == '7' ? "b-P" : pieceOnSquare.Animation;
+		pieceOnSquare.Animation = currentCoordinate.Y == 2 ? "w-P" : pieceOnSquare.Animation;
+		pieceOnSquare.Animation = currentCoordinate.Y == 7 ? "b-P" : pieceOnSquare.Animation;
 	}
 }

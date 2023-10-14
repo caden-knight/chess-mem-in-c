@@ -9,6 +9,7 @@ public partial class CheckMovement : Control
 	public bool squareOccupied;
 	public string pieceOnSquare;
 	public string squareCoord;
+	public Vector2 vectorCoord;
 
 	private bool mouseClicked = false;
 	private bool highlighted = false;
@@ -23,7 +24,6 @@ public partial class CheckMovement : Control
 		chessBoard = GetNode<Node2D>("/root/ChessMemory/ChessBoard");
 		singleton = GetNode<Singleton>("/root/Singleton");
 		coordLetters = singleton.coordLetters;
-
 	}
 
 	public override void _Input(InputEvent @event)
@@ -34,7 +34,6 @@ public partial class CheckMovement : Control
 			// check to see if player left clicked
 			if (mouseButton.ButtonIndex == MouseButton.Left && mouseButton.Pressed)
 			{
-				GD.Print(singleton.allCoords[7]);
 				// get mouse position of where the player clicked
 				Vector2 mousePosition = GetGlobalMousePosition();
 
@@ -44,6 +43,7 @@ public partial class CheckMovement : Control
 				// REMEMBER THIS CODE!
 				if (GetGlobalRect().HasPoint(mousePosition))
 				{
+					GD.Print(vectorCoord);
 					ClearHighlightedSquares(chessBoard);
 
 					AnimatedSprite2D squareAnimation = GetChild<AnimatedSprite2D>(2);
@@ -104,19 +104,14 @@ public partial class CheckMovement : Control
 							squareSprite.Visible = true; // ensure it's visible
 							squareSprite.Scale = highlightScale;
 						}
-
 					}
 				}
 				break;
 
 			case "w-N":
 				squareCoord = GetChild<Label>(1).Text;
-
-				GD.Print(squareOccupied);
-				GD.Print(pieceOnSquare);
-
 				// FIXME: potential problem if planning on using squareOccupied in if statement above
-				squareOccupied = false;
+				// squareOccupied = false;
 				// squareAnimation.Visible = squareOccupied;
 
 
@@ -125,7 +120,6 @@ public partial class CheckMovement : Control
 					DetermineKnightMoves(square);
 				}
 				break;
-
 		}
 	}
 
@@ -136,58 +130,32 @@ public partial class CheckMovement : Control
 		//FIXME: disgusting code, refactor 
 		// variables for calculating and identifying the coordinate
 		string squareLabel = square.GetChild<Label>(1).Text;
-		int rankNum;
-		int rankNumOption2;
-		string destinationCoord1 = "";
-		string destinationCoord2 = "";
-		List<string> availableMoves = new List<string>();
+		Vector2 currentCoord = vectorCoord;
+		List<Vector2> availableMoves = new();
 
 		// ensures the square isn't occupied
 		// so the game won't highlight a spot that is occupied by another piece
-		if (!((CheckMovement)square).squareOccupied)
+		Vector2 destCoord;
+
+		destCoord.X = currentCoord.X + 1 <= 8 ? currentCoord.X + 1 : 0;
+		destCoord.Y = currentCoord.Y + 2 <= 8 ? currentCoord.Y + 2 : 0;
+		GD.Print(vectorCoord);
+
+		if (destCoord.X > 0 && destCoord.Y > 0)
 		{
-			for (int i = 0; i < coordLetters.Count; i++)
-			{
+			availableMoves.Add(destCoord);
+		}
 
-				if (coordLetters[i] == squareCoord[0].ToString())
-				{
-					string letterCoord1 = i <= 6 ? coordLetters[i + 1] : null;
-					string letterCoord2 = i >= 1 ? coordLetters[i - 1] : null;
+		if (!squareOccupied) return;
 
-					GD.Print(letterCoord1);
-					GD.Print(letterCoord2);
-
-					if (letterCoord1 != null)
-					{
-						rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
-						rankNumOption2 = Convert.ToInt32(squareCoord[1].ToString()) - 2;
-
-						destinationCoord1 = rankNum <= 8 ? $"{letterCoord1}{rankNum}" : null;
-
-						if (destinationCoord1 != null)
-						{
-							availableMoves.Add(destinationCoord1);
-						}
-					}
-					if (letterCoord2 != null)
-					{
-						rankNum = Convert.ToInt32(squareCoord[1].ToString()) + 2;
-						destinationCoord2 = rankNum <= 8 ? $"{letterCoord2}{rankNum}" : null;
-
-						if (destinationCoord2 != null)
-						{
-							availableMoves.Add(destinationCoord2);
-						}
-					}
-				}
-			}
-
-			GD.Print(availableMoves.Count);
+		else
+		{
 
 			for (int i = 0; i < availableMoves.Count; i++)
 			{
-				if (squareLabel == availableMoves[i])
+				if (vectorCoord == availableMoves[i])
 				{
+					GD.Print("poop");
 					// Highlight move squares and adjust the highlight's sprite size
 					AnimatedSprite2D squareSprite = square.GetChild<AnimatedSprite2D>(2);
 					squareSprite.Animation = "highlight";
@@ -196,14 +164,5 @@ public partial class CheckMovement : Control
 				}
 			}
 		}
-	}
-
-	private string AddLetters(List<string> letters, string letterToAdd, int amount)
-	{
-		// find the index of the letter that appears in the array
-		// letters.index(letter)
-		// 
-
-		return "";
 	}
 }
