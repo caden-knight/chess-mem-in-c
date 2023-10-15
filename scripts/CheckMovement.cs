@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+
 public partial class CheckMovement : Control
 {
 	public Node2D chessBoard;
@@ -9,7 +10,7 @@ public partial class CheckMovement : Control
 	public bool squareOccupied;
 	public string pieceOnSquare;
 	public string squareCoord;
-	public Vector2 vectorCoord;
+	public Vector2 clickedSquareCoord;
 
 	private bool mouseClicked = false;
 	private bool highlighted = false;
@@ -43,7 +44,7 @@ public partial class CheckMovement : Control
 				// REMEMBER THIS CODE!
 				if (GetGlobalRect().HasPoint(mousePosition))
 				{
-					GD.Print(vectorCoord);
+					GD.Print(clickedSquareCoord);
 					ClearHighlightedSquares(chessBoard);
 
 					AnimatedSprite2D squareAnimation = GetChild<AnimatedSprite2D>(2);
@@ -127,42 +128,42 @@ public partial class CheckMovement : Control
 	// TODO: still needs to calculate up 1 over 2 pattern
 	private void DetermineKnightMoves(Control square)
 	{
-		//FIXME: disgusting code, refactor 
-		// variables for calculating and identifying the coordinate
-		string squareLabel = square.GetChild<Label>(1).Text;
-		Vector2 currentCoord = vectorCoord;
-		List<Vector2> availableMoves = new();
+		Vector2 passedInSquareCoord = ((CheckMovement)square).clickedSquareCoord;
+		List<Godot.Vector2> availableMoves = new();
 
-		// ensures the square isn't occupied
-		// so the game won't highlight a spot that is occupied by another piece
 		Vector2 destCoord;
 
-		destCoord.X = currentCoord.X + 1 <= 8 ? currentCoord.X + 1 : 0;
-		destCoord.Y = currentCoord.Y + 2 <= 8 ? currentCoord.Y + 2 : 0;
-		GD.Print(vectorCoord);
+		destCoord.X = clickedSquareCoord.X + 1 <= 8 ? clickedSquareCoord.X + 1 : 0;
+		destCoord.Y = clickedSquareCoord.Y + 2 <= 8 ? clickedSquareCoord.Y + 2 : 0;
 
-		if (destCoord.X > 0 && destCoord.Y > 0)
+		if (destCoord <= Vector2.Zero) return;
+
+		else
 		{
 			availableMoves.Add(destCoord);
 		}
 
-		if (!squareOccupied) return;
+		Vector2 targetVector2 = new(8, 8);
+
+		if (availableMoves.Count <= 0) return;
 
 		else
 		{
-
 			for (int i = 0; i < availableMoves.Count; i++)
 			{
-				if (vectorCoord == availableMoves[i])
+				if (availableMoves[i] == passedInSquareCoord)
 				{
-					GD.Print("poop");
 					// Highlight move squares and adjust the highlight's sprite size
 					AnimatedSprite2D squareSprite = square.GetChild<AnimatedSprite2D>(2);
 					squareSprite.Animation = "highlight";
-					squareSprite.Visible = true; // make it visible since it may have been invisible
+					squareSprite.Visible = true; // ensure it's visible
 					squareSprite.Scale = highlightScale;
+
+
 				}
 			}
 		}
+
+
 	}
 }

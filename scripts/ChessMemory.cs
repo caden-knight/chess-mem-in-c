@@ -7,6 +7,7 @@ public partial class ChessMemory : Node2D
 	[Export]
 	public Node2D chessBoard;
 	public Singleton singleton;
+	public Vector2 currentVectorCoord;
 
 	private int squareCount = 0;
 	private bool isWhiteSquare = true;
@@ -37,7 +38,7 @@ public partial class ChessMemory : Node2D
 			for (int file = 1; file <= 8; file++)
 			{
 
-				Vector2 currentVectorCoord = new(file, 9 - rank);
+				currentVectorCoord = new(file, 9 - rank);
 				singleton.allCoords.Add(currentVectorCoord);
 
 				Control squareControl = squareScene.Instantiate<Control>();
@@ -70,7 +71,7 @@ public partial class ChessMemory : Node2D
 
 				// determines what piece is occupying the square and where the piece is
 				((CheckMovement)squareControl).pieceOnSquare = squarePiece.Animation;
-				((CheckMovement)squareControl).vectorCoord = currentVectorCoord;
+				((CheckMovement)squareControl).clickedSquareCoord = currentVectorCoord;
 
 				chessBoard.AddChild(squareControl);
 			}
