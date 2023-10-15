@@ -135,7 +135,7 @@ public partial class ChessMemory : Node2D
 				break;
 
 			// White Knight placement
-			case Vector2(2, 1):
+			case Vector2(3, 3):
 				pieceOnSquare.Animation = "w-N";
 				break;
 			case Vector2(7, 1):

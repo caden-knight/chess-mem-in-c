@@ -128,26 +128,77 @@ public partial class CheckMovement : Control
 	// TODO: still needs to calculate up 1 over 2 pattern
 	private void DetermineKnightMoves(Control square)
 	{
+		// FIXME: may be unnecessary ↓
+		singleton.pieceSelected = Singleton.Piece.Knight;
+
 		Vector2 passedInSquareCoord = ((CheckMovement)square).clickedSquareCoord;
 		List<Godot.Vector2> availableMoves = new();
 
-		Vector2 destCoord;
+		Vector2 destCoord,
+		destCoord2,
+		destCoord3,
+		destCoord4,
+		destCoord5,
+		destCoord6,
+		destCoord7,
+		destCoord8;
 
-		destCoord.X = clickedSquareCoord.X + 1 <= 8 ? clickedSquareCoord.X + 1 : 0;
-		destCoord.Y = clickedSquareCoord.Y + 2 <= 8 ? clickedSquareCoord.Y + 2 : 0;
 
-		if (destCoord <= Vector2.Zero) return;
+		destCoord = clickedSquareCoord.X + 1 <= 8 && clickedSquareCoord.Y + 2 <= 8
+		? new Vector2(clickedSquareCoord.X + 1, clickedSquareCoord.Y + 2)
+		: Vector2.Zero;
 
-		else
-		{
-			availableMoves.Add(destCoord);
-		}
+		destCoord2 = clickedSquareCoord.X - 1 > 0 && clickedSquareCoord.Y + 2 <= 8
+		? new Vector2(clickedSquareCoord.X - 1, clickedSquareCoord.Y + 2)
+		: Vector2.Zero;
 
-		Vector2 targetVector2 = new(8, 8);
+		destCoord3 = clickedSquareCoord.X + 2 <= 8 && clickedSquareCoord.Y + 1 <= 8
+		? new Vector2(clickedSquareCoord.X + 2, clickedSquareCoord.Y + 1)
+		: Vector2.Zero;
+
+		destCoord4 = clickedSquareCoord.X - 2 > 0 && clickedSquareCoord.Y + 1 <= 8
+		? new Vector2(clickedSquareCoord.X - 2, clickedSquareCoord.Y + 1)
+		: Vector2.Zero;
+
+		destCoord5 = clickedSquareCoord.X - 1 > 0 && clickedSquareCoord.Y - 2 > 0
+		? new Vector2(clickedSquareCoord.X - 1, clickedSquareCoord.Y - 2)
+		: Vector2.Zero;
+
+		destCoord6 = clickedSquareCoord.X - 2 > 0 && clickedSquareCoord.Y - 1 > 0
+		? new Vector2(clickedSquareCoord.X - 2, clickedSquareCoord.Y - 1)
+		: Vector2.Zero;
+
+		destCoord7 = clickedSquareCoord.X + 2 < 9 && clickedSquareCoord.Y - 1 > 0
+		? new Vector2(clickedSquareCoord.X + 2, clickedSquareCoord.Y - 1)
+		: Vector2.Zero;
+
+		destCoord8 = clickedSquareCoord.X + 1 < 9 && clickedSquareCoord.Y - 2 > 0
+		? new Vector2(clickedSquareCoord.X + 1, clickedSquareCoord.Y - 2)
+		: Vector2.Zero;
+
+		GD.Print(destCoord7);
+		availableMoves.Add(destCoord);
+		availableMoves.Add(destCoord2);
+		availableMoves.Add(destCoord3);
+		availableMoves.Add(destCoord4);
+		availableMoves.Add(destCoord5);
+		availableMoves.Add(destCoord6);
+		availableMoves.Add(destCoord7);
+		availableMoves.Add(destCoord8);
+
+		// if (destCoord >= Vector2.Zero) return;
+
+		// else
+		// {
+		// 	availableMoves.Add(destCoord);
+		// 	availableMoves.Add(destCoord2);
+		// 	availableMoves.Add(destCoord3);
+		// 	// availableMoves.Add(destCoord4);
+		// }
 
 		if (availableMoves.Count <= 0) return;
 
-		else
+		else if (!((CheckMovement)square).squareOccupied)
 		{
 			for (int i = 0; i < availableMoves.Count; i++)
 			{
@@ -158,12 +209,8 @@ public partial class CheckMovement : Control
 					squareSprite.Animation = "highlight";
 					squareSprite.Visible = true; // ensure it's visible
 					squareSprite.Scale = highlightScale;
-
-
 				}
 			}
 		}
-
-
 	}
 }
