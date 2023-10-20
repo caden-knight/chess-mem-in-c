@@ -1,2 +1,2 @@
-﻿51536
-A:/GameDev/Godot/godot-executables/c#-godot/Godot_v4.1.1-stable_mono_win64/Godot_v4.1.1-stable_mono_win64.exe
+﻿58507
+/private/var/folders/cr/pdx4vvhd7fn95gsf6sk3byp40000gn/T/AppTranslocation/D88F9A75-DC34-4545-A446-1078CBD211C7/d/Godot_mono 2.app/Contents/MacOS/Godot

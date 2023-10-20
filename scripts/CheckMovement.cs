@@ -115,17 +115,25 @@ public partial class CheckMovement : Control
 				// squareOccupied = false;
 				// squareAnimation.Visible = squareOccupied;
 
-
 				foreach (Control square in squares)
 				{
 					DetermineKnightMoves(square);
 				}
+				break;
+
+			case "w-R":
+				foreach (Control square in squares)
+				{
+					DetermineRookMoves(square);
+				}
+
 				break;
 		}
 	}
 
 	//  function correctly moves knight in the up 2 over 1 pattern
 	// TODO: still needs to calculate up 1 over 2 pattern
+
 	private void DetermineKnightMoves(Control square)
 	{
 		// FIXME: may be unnecessary ↓
@@ -143,7 +151,7 @@ public partial class CheckMovement : Control
 		destCoord7,
 		destCoord8;
 
-
+		// FIXME: refactor; make more efficient. lines 155-185
 		destCoord = clickedSquareCoord.X + 1 <= 8 && clickedSquareCoord.Y + 2 <= 8
 		? new Vector2(clickedSquareCoord.X + 1, clickedSquareCoord.Y + 2)
 		: Vector2.Zero;
@@ -186,15 +194,7 @@ public partial class CheckMovement : Control
 		availableMoves.Add(destCoord7);
 		availableMoves.Add(destCoord8);
 
-		// if (destCoord >= Vector2.Zero) return;
 
-		// else
-		// {
-		// 	availableMoves.Add(destCoord);
-		// 	availableMoves.Add(destCoord2);
-		// 	availableMoves.Add(destCoord3);
-		// 	// availableMoves.Add(destCoord4);
-		// }
 
 		if (availableMoves.Count <= 0) return;
 
@@ -211,6 +211,21 @@ public partial class CheckMovement : Control
 					squareSprite.Scale = highlightScale;
 				}
 			}
+		}
+	}
+
+	private void DetermineRookMoves(Control square)
+	{
+		singleton.pieceSelected = Singleton.Piece.Knight;
+
+		List<Vector2> availableMoves = new();
+		float originalY = clickedSquareCoord.Y;
+
+		float yDifference = 8 - originalY;
+
+		for (int i = 0; i < yDifference; i++)
+		{
+
 		}
 	}
 }

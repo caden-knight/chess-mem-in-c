@@ -130,7 +130,7 @@ public partial class ChessMemory : Node2D
 			case Vector2(1, 1):
 				pieceOnSquare.Animation = "w-R";
 				break;
-			case Vector2(8, 1):
+			case Vector2(6, 5):
 				pieceOnSquare.Animation = "w-R";
 				break;
 
