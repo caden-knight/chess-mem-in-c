@@ -223,22 +223,23 @@ public partial class CheckMovement : Control
 
 		float yDifference = 8 - originalY;
 
-		for (int i = 0; i < yDifference; i++)
-		{
+		findSquareByCoord(clickedSquareCoord, singleton);
 
-		}
+		// for (int i = 0; i < yDifference; i++)
+		// {
+
+		// }
 	}
 
-	private Control findSquareByCoord(Vector2 targetCoord, squares)
+	private void findSquareByCoord(Vector2 targetCoord, Singleton sing)
 	{
-		Godot.Collections.Array<Node> squares = chessBoard.GetChildren();
 		Control targetSquare = chessBoard.GetChild<Control>(0);
 
-		foreach (Control square in squares)
+		foreach (Control square in sing.squares)
 		{
-
+			targetSquare = square;
 		}
 
-		return targetSquare;
+		GD.Print(((CheckMovement)targetSquare).clickedSquareCoord);
 	}
 }

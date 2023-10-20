@@ -1,5 +1,5 @@
-res://scenes/chess_memory.tscn
-res://scenes/chess_square.tscn
 res://scripts/CheckMovement.cs
 res://scripts/ChessMemory.cs
 res://scripts/Singleton.cs
+res://scenes/chess_memory.tscn
+res://scenes/chess_square.tscn
