@@ -228,4 +228,17 @@ public partial class CheckMovement : Control
 
 		}
 	}
+
+	private Control findSquareByCoord(Vector2 targetCoord, squares)
+	{
+		Godot.Collections.Array<Node> squares = chessBoard.GetChildren();
+		Control targetSquare = chessBoard.GetChild<Control>(0);
+
+		foreach (Control square in squares)
+		{
+
+		}
+
+		return targetSquare;
+	}
 }
